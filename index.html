@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt Card Challenge</title>
+<meta name="description" content="Tài liệu thực hành workshop: Từ domain lạ đến câu hỏi đúng">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f5f5fa;
+    --text: #1b1c4b;
+    --muted: #5d5f80;
+    --accent: #3e3a9e;
+    --accent-text: #ffffff;
+    --gold: #c9a227;
+    --warn-bg: #faf3de;
+    --border: #e2e2ee;
+    --ok: #2e7d5b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12132e;
+      --surface: #1d1f45;
+      --text: #ecebfa;
+      --muted: #a9abcf;
+      --accent: #8c88f0;
+      --accent-text: #12132e;
+      --gold: #e5c76b;
+      --warn-bg: #2d2a1c;
+      --border: #2e3060;
+      --ok: #6fd3a5;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 4px; }
+  h2 { font-size: 1.15rem; margin: 32px 0 12px; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .timer { display: inline-block; background: var(--text); color: var(--gold); font-weight: 700; padding: 2px 10px; border-radius: 999px; font-size: .9rem; }
+  .box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  ol { margin: 0; padding-left: 1.3em; }
+  ol li { margin-bottom: 8px; }
+  ul.eegd { margin: 6px 0 0; padding-left: 1.1em; }
+  .warn { background: var(--warn-bg); border-radius: 12px; padding: 12px 16px; margin-top: 16px; font-weight: 600; }
+  .steps { color: var(--muted); font-size: .95rem; margin: 0 0 12px; }
+  pre {
+    margin: 0; white-space: pre-wrap; word-break: break-word;
+    font: 14px/1.6 ui-monospace, Consolas, "Courier New", monospace;
+  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  .card h3 { margin: 0 0 8px; font-size: 1rem; color: var(--accent); }
+  .card p { margin: 0 0 14px; }
+  .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .row h2 { margin: 0; }
+  button {
+    font: inherit; font-weight: 600; cursor: pointer;
+    border: 0; border-radius: 10px; padding: 10px 14px; min-height: 44px;
+    background: var(--accent); color: var(--accent-text);
+  }
+  button.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  button.done { background: var(--ok); color: var(--accent-text); border-color: var(--ok); }
+  .card button { width: 100%; }
+  footer { color: var(--muted); font-size: .85rem; margin-top: 32px; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Prompt Card Challenge</h1>
+  <p class="sub">Workshop “Từ domain lạ đến câu hỏi đúng” · <span class="timer">10 phút</span></p>
+
+  <p class="steps">Chọn <strong>1 trong 4 prompt</strong> bên dưới, bấm <strong>Copy prompt + metadata</strong>, rồi dán vào công cụ AI bạn quen dùng (bản miễn phí cũng được).</p>
+
+  <h2>Nhiệm vụ</h2>
+  <div class="box">
+    <p style="margin:0 0 10px">Sau khi AI trả lời, hãy ghi nhận:</p>
+    <ol>
+      <li><strong>Fact:</strong> Nội dung nào AI rút ra trực tiếp từ metadata được cấp?</li>
+      <li><strong>Assumption:</strong> Nội dung nào AI đang tự suy diễn hoặc lấy từ chuẩn ngành chung?</li>
+      <li><strong>Missing Information:</strong> Để giải bài toán, còn thiếu dữ liệu hoặc định nghĩa nào?</li>
+      <li><strong>Stakeholder Question:</strong> Viết <strong>1 câu hỏi</strong> mang đi hỏi stakeholder, gồm:
+        <ul class="eegd">
+          <li><strong>Expectation:</strong> Mình đang hiểu thế nào?</li>
+          <li><strong>Evidence:</strong> Metadata / tài liệu đang thể hiện điều gì?</li>
+          <li><strong>Gap:</strong> Điểm nào chưa khớp hoặc chưa rõ?</li>
+          <li><strong>Decision:</strong> Cần stakeholder xác nhận điều gì?</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+  <div class="warn">🔒 Chỉ dùng metadata và dữ liệu giả lập trong trang này. Không đưa dữ liệu thật hay thông tin nhạy cảm của dự án vào công cụ AI.</div>
+
+  <div class="row" style="margin-top:32px">
+    <h2>Sample Metadata</h2>
+    <button class="ghost" data-copy="meta">Copy</button>
+  </div>
+  <div class="box"><pre id="meta">cust_id
+application_id
+product_cd
+channel_cd
+application_dt
+decision_dt
+application_status
+decision_reason_cd
+acct_stat
+credit_limit
+disbursement_amt
+txn_cnt_90d
+last_customer_txn_dt
+last_system_txn_dt
+days_past_due</pre></div>
+
+  <h2>Chọn 1 prompt</h2>
+
+  <section class="card">
+    <h3>Prompt 1</h3>
+    <p class="prompt">Hãy đóng vai Giám đốc Quản trị Rủi ro kiêm Chuyên gia Phân tích Dữ liệu cao cấp với 15 năm kinh nghiệm trong lĩnh vực ngân hàng bán lẻ. Dựa trên cấu trúc metadata được cung cấp về quy trình cấp thẻ tín dụng, hãy phân tích toàn diện và đề xuất danh sách các KPI cùng logic đo lường chuẩn mực nhất để đánh giá hiệu quả vận hành và kiểm soát rủi ro danh mục cho dự án này.</p>
+    <button data-copy="card">Copy prompt + metadata</button>
+  </section>
+
+  <section class="card">
+    <h3>Prompt 2</h3>
+    <p class="prompt">Tôi đang có bảng dữ liệu quy trình thẻ tín dụng gồm application_id, application_status, application_dt, decision_dt và txn_cnt_90d. Hãy viết giúp tôi các đoạn code SQL và công thức DAX hoàn chỉnh để tính toán tỷ lệ phê duyệt, thời gian xử lý hồ sơ (turnaround time) và phân loại nhóm khách hàng active theo các field đã cho trong metadata để đưa lên dashboard theo dõi hiệu suất.</p>
+    <button data-copy="card">Copy prompt + metadata</button>
+  </section>
+
+  <section class="card">
+    <h3>Prompt 3</h3>
+    <p class="prompt">Team tôi chuẩn bị kick-off dự án tối ưu thời gian xử lý hồ sơ thẻ tín dụng và giảm tắc nghẽn luồng duyệt. Dựa trên danh sách trường dữ liệu đã cho, hãy phác thảo các điểm nghẽn tiềm ẩn và đề xuất bộ chỉ số đo lường khả thi. Hãy phân tách rõ ràng thành hai phần: thứ nhất là nhận định trực tiếp từ metadata, thứ hai là giả định ngành cần xác nhận lại với stakeholder.</p>
+    <button data-copy="card">Copy prompt + metadata</button>
+  </section>
+
+  <section class="card">
+    <h3>Prompt 4</h3>
+    <p class="prompt">Dựa vào bảng metadata của quy trình cấp thẻ tín dụng này, hãy tính toán xem tỷ lệ phê duyệt hồ sơ hiện tại đang đạt bao nhiêu phần trăm, thời gian xử lý trung bình mỗi bộ hồ sơ mất mấy ngày và xác định nhóm khách hàng có rủi ro quá hạn cao nhất để team chuẩn bị số liệu chính thức báo cáo trong buổi họp kick-off sáng thứ Hai tới.</p>
+    <button data-copy="card">Copy prompt + metadata</button>
+  </section>
+
+  <footer>AI drafts. You verify.</footer>
+</main>
+<script>
+  const meta = document.getElementById('meta').textContent.trim();
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // In-app browsers (Zalo, Messenger...) may block the Clipboard API
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      document.execCommand('copy');
+      ta.remove();
+    }
+  }
+
+  document.querySelectorAll('button[data-copy]').forEach(btn => {
+    const label = btn.textContent;
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy === 'meta'
+        ? meta
+        : btn.closest('.card').querySelector('.prompt').textContent.trim() +
+          '\n\nCấu trúc dữ liệu (metadata):\n' + meta;
+      await copyText(text);
+      btn.textContent = 'Đã copy ✓';
+      btn.classList.add('done');
+      setTimeout(() => { btn.textContent = label; btn.classList.remove('done'); }, 2000);
+    });
+  });
+</script>
+</body>
+</html>
